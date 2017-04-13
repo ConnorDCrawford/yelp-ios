@@ -30,7 +30,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readonly, copy) NSString *identifier;
 
 @property (nonatomic, readonly, copy) NSArray<YLPCategory *> *categories;
-@property (nonatomic, readonly, copy) NSArray<YLPHours *> *hours;
+@property (nonatomic, readonly, nullable, copy) NSArray<YLPHours *> *hours;
 
 @property (nonatomic, readonly) YLPLocation *location;
 

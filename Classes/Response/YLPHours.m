@@ -23,13 +23,13 @@
         NSUInteger sMin = [[startTimeStr substringFromIndex:2] integerValue];
         _startTimeComponents = [[NSDateComponents alloc] init];
         [_startTimeComponents setHour:sHour];
-        [_startTimeComponents setHour:sMin];
+        [_startTimeComponents setMinute:sMin];
         
         NSInteger eHour = [[endTimeStr substringToIndex:2] integerValue];
         NSUInteger eMin = [[endTimeStr substringFromIndex:2] integerValue];
         _endTimeComponents = [[NSDateComponents alloc] init];
         [_endTimeComponents setHour:eHour];
-        [_endTimeComponents setHour:eMin];
+        [_endTimeComponents setMinute:eMin];
         
     }
     return self;
