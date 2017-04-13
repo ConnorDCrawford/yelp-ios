@@ -31,6 +31,11 @@
         _phone = phone.length > 0 ? phone : nil;
         
         _categories = [self.class categoriesFromJSONArray:businessDict[@"categories"]];
+        
+        NSDictionary *hoursDict = [[businessDict[@"hours"] allObjects] firstObject];
+        _openNow = [hoursDict[@"is_open_now"] boolValue];
+        _hours = [self.class hoursFromJSONArray:hoursDict[@"open"]];
+        
         YLPCoordinate *coordinate = [self.class coordinateFromJSONDictionary:businessDict[@"coordinates"]];
         _location = [[YLPLocation alloc] initWithDictionary:businessDict[@"location"] coordinate:coordinate];
     }
@@ -43,6 +48,14 @@
         [mutableCategories addObject:[[YLPCategory alloc] initWithDictionary:category]];
     }
     return mutableCategories;
+}
+
++ (NSArray *)hoursFromJSONArray:(NSArray *)hoursJSON {
+    NSMutableArray *mutableHours = [[NSMutableArray alloc] init];
+    for (NSDictionary *hours in hoursJSON) {
+        [mutableHours addObject:[[YLPHours alloc] initWithDictionary:hours]];
+    }
+    return mutableHours;
 }
 
 + (YLPCoordinate *)coordinateFromJSONDictionary:(NSDictionary *)coordinatesDict {
